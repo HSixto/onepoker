@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Poker Game</title>
+    <style>
+        .game-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+        }
+        .player-area {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        .status-display {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+        .cards {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .card {
+            width: 100px;
+            height: 140px;
+            border: 2px solid #000;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            background-color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="player-area">
+            <h2>玩家</h2>
+            <div class="chips-display" id="player-chips" style="
+                margin: 10px 0;
+                font-size: 18px;
+                color: #d32f2f;
+            ">
+                剩余生命: 0
+            </div>
+            <div class="status-display" id="player-status">
+                UP牌: 0 | DOWN牌: 0
+            </div>
+            <div class="cards" id="player-cards"></div>
+        </div>
+        
+        <div class="player-area">
+            <h2>电脑</h2>
+            <div class="chips-display" id="computer-chips" style="
+                margin: 10px 0;
+                font-size: 18px;
+                color: #d32f2f;
+            ">
+                剩余生命: 0
+            </div>
+            <div class="status-display" id="computer-status">
+                UP牌: 0 | DOWN牌: 0
+            </div>
+            <div class="cards" id="computer-cards"></div>
+        </div>
+    </div>
+    <div style="text-align: center; margin: 20px;">
+        <h3>选择你的角色</h3>
+        <div style="margin: 10px;">
+            <input type="radio" id="kaiji" name="character" value="kaiji" checked>
+            <label for="kaiji">伊藤开司</label>
+            <input type="radio" id="hyodo" name="character" value="hyodo">
+            <label for="hyodo">兵藤和也</label>
+        </div>
+        <button id="start-game">开始游戏</button>
+    </div>
+    <div style="text-align: center; margin: 20px;">
+        <h3>对战记录</h3>
+        <div id="battle-history" style="
+            margin: 10px auto;
+            max-width: 1000px;
+            overflow-x: auto;
+        ">
+            <table style="width: 100%; border-collapse: collapse; border: 1px solid #ccc;">
+                <thead>
+                    <tr>
+                        <th style="padding: 5px; border: 1px solid #ccc; width: 100px;">对战双方</th>
+                        <th style="padding: 5px; border: 1px solid #ccc;">1</th>
+                        <th style="padding: 5px; border: 1px solid #ccc;">2</th>
+                        <th style="padding: 5px; border: 1px solid #ccc;">3</th>
+                        <th style="padding: 5px; border: 1px solid #ccc;">4</th>
+                        <th style="padding: 5px; border: 1px solid #ccc;">5</th>
+                        <th style="padding: 5px; border: 1px solid #ccc;">6</th>
+                        <th style="padding: 5px; border: 1px solid #ccc;">7</th>
+                        <th style="padding: 5px; border: 1px solid #ccc;">8</th>
+                        <th style="padding: 5px; border: 1px solid #ccc;">9</th>
+                        <th style="padding: 5px; border: 1px solid #ccc;">10</th>
+                        <th style="padding: 5px; border: 1px solid #ccc;">11</th>
+                        <th style="padding: 5px; border: 1px solid #ccc;">12</th>
+                        <th style="padding: 5px; border: 1px solid #ccc;">13</th>
+                        <th style="padding: 5px; border: 1px solid #ccc;">14</th>
+                        <th style="padding: 5px; border: 1px solid #ccc;">15</th>
+                        <th style="padding: 5px; border: 1px solid #ccc;">16</th>
+                        <th style="padding: 5px; border: 1px solid #ccc;">17</th>
+                        <th style="padding: 5px; border: 1px solid #ccc;">18</th>
+                        <th style="padding: 5px; border: 1px solid #ccc;">19</th>
+                        <th style="padding: 5px; border: 1px solid #ccc;">20</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="player-history">
+                        <td style="border: 1px solid #ccc; padding: 5px; font-weight: bold; width: 100px;"></td>
+                    </tr>
+                    <tr id="computer-history">
+                        <td style="border: 1px solid #ccc; padding: 5px; font-weight: bold; width: 100px;"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html> 
